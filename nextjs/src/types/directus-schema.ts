@@ -1,30 +1,31 @@
+
 export interface ExtensionSeoMetadata {
-	title?: string;
-	meta_description?: string;
-	og_image?: string;
-	additional_fields?: Record<string, unknown>;
-	sitemap?: {
-		change_frequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-		priority: string;
-	};
-	no_index?: boolean;
-	no_follow?: boolean;
+    title?: string;
+    meta_description?: string;
+    og_image?: string;
+    additional_fields?: Record<string, unknown>;
+    sitemap?: {
+        change_frequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+        priority: string;
+    };
+    no_index?: boolean;
+    no_follow?: boolean;
 }
 
 export interface AiPrompt {
 	/** @primaryKey */
 	id: string;
+	sort?: number | null;
 	/** @description Unique name for the prompt. Use names like "create-article" or "generate-product-description". @required */
 	name: string;
-	/** @description Briefly explain what this prompt does in 1-2 sentences. */
-	description?: string | null;
-	/** @description Instructions that shape how the AI responds. */
-	system_prompt?: string | null;
-	/** @description Optional: Define the conversation structure between users and AI. Used to add context and improve outputs. */
-	messages?: Array<{ role: 'user' | 'assistant'; text: string }> | null;
-	sort?: number | null;
 	/** @description Is this prompt published and available to use? */
 	status?: 'draft' | 'in_review' | 'published';
+	/** @description Briefly explain what this prompt does in 1-2 sentences. */
+	description?: string | null;
+	/** @description Optional: Define the conversation structure between users and AI. Used to add context and improve outputs. */
+	messages?: Array<{ role: 'user' | 'assistant'; text: string }> | null;
+	/** @description Instructions that shape how the AI responds. */
+	system_prompt?: string | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -65,6 +66,33 @@ export interface BlockButtonGroup {
 	user_updated?: DirectusUser | string | null;
 	/** @description Add individual buttons to the button group. */
 	buttons?: BlockButton[] | string[];
+}
+
+export interface BlockFeaturedCarousel {
+	/** @primaryKey */
+	id: string;
+	user_created?: DirectusUser | string | null;
+	date_created?: string | null;
+	user_updated?: DirectusUser | string | null;
+	date_updated?: string | null;
+	block_title?: string | null;
+	/** @description  This field controls the alignment of the image. @required */
+	image_alignment: 'left' | 'right';
+	items?: BlockFeaturedCarouselItem[] | string[];
+}
+
+export interface BlockFeaturedCarouselItem {
+	/** @primaryKey */
+	id: string;
+	user_created?: DirectusUser | string | null;
+	date_created?: string | null;
+	user_updated?: DirectusUser | string | null;
+	date_updated?: string | null;
+	item_title?: string | null;
+	item_description?: string | null;
+	order?: number | null;
+	foreign_block_featured_carousel_id?: BlockFeaturedCarousel | string | null;
+	item_image?: DirectusFile | string | null;
 }
 
 export interface BlockForm {
@@ -130,6 +158,31 @@ export interface BlockHero {
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
 	user_updated?: DirectusUser | string | null;
+}
+
+export interface BlockHighlightTile {
+	/** @primaryKey */
+	id: string;
+	user_created?: DirectusUser | string | null;
+	date_created?: string | null;
+	user_updated?: DirectusUser | string | null;
+	date_updated?: string | null;
+	title?: string | null;
+	items?: BlockHighlightTilesItem[] | string[];
+}
+
+export interface BlockHighlightTilesItem {
+	/** @primaryKey */
+	id: number;
+	sort?: number | null;
+	user_created?: DirectusUser | string | null;
+	date_created?: string | null;
+	user_updated?: DirectusUser | string | null;
+	date_updated?: string | null;
+	item_title?: string | null;
+	item_description?: string | null;
+	foreign_block_highlight_tiles_id?: BlockHighlightTile | string | null;
+	item_image?: DirectusFile | string | null;
 }
 
 export interface BlockPost {
@@ -206,6 +259,16 @@ export interface BlockRichtext {
 	user_updated?: DirectusUser | string | null;
 }
 
+export interface BlockUpcomingCard {
+	/** @primaryKey */
+	id: string;
+	user_created?: DirectusUser | string | null;
+	date_created?: string | null;
+	user_updated?: DirectusUser | string | null;
+	date_updated?: string | null;
+	title?: string | null;
+}
+
 export interface FormField {
 	/** @primaryKey */
 	id: string;
@@ -277,7 +340,7 @@ export interface FormSubmission {
 
 export interface FormSubmissionValue {
 	/** @primaryKey */
-	id?: string;
+	id: string;
 	/** @description Parent form submission for this value. */
 	form_submission?: FormSubmission | string | null;
 	field?: FormField | string | null;
@@ -295,10 +358,7 @@ export interface Globals {
 	/** @primaryKey */
 	id: string;
 	/** @description Social media profile URLs */
-	social_links?: Array<{
-		url: string;
-		service: 'facebook' | 'instagram' | 'linkedin' | 'x' | 'vimeo' | 'youtube' | 'github' | 'discord' | 'docker';
-	}> | null;
+	social_links?: Array<{ url: string; service: 'facebook' | 'instagram' | 'linkedin' | 'x' | 'vimeo' | 'youtube' | 'github' | 'discord' | 'docker' }> | null;
 	/** @description Short phrase describing the site. */
 	tagline?: string | null;
 	/** @description Main site title */
@@ -313,10 +373,10 @@ export interface Globals {
 	openai_api_key?: string | null;
 	/** @description The public URL for this Directus instance. Used in Flows. */
 	directus_url?: string | null;
-	/** @description Accent color for the website (used on buttons, links, etc). */
-	accent_color?: string | null;
 	/** @description Main logo shown on the site (for dark mode). */
 	logo_dark_mode?: DirectusFile | string | null;
+	/** @description Accent color for the website (used on buttons, links, etc). */
+	accent_color?: string | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -371,7 +431,7 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockHighlightTile | BlockFeaturedCarousel | BlockUpcomingCard | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
@@ -430,6 +490,7 @@ export interface Post {
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
 	user_updated?: DirectusUser | string | null;
+	'optical_publish-xflphh'?: 'json' | null;
 }
 
 export interface Redirect {
@@ -681,31 +742,12 @@ export interface DirectusSettings {
 	public_background?: DirectusFile | string | null;
 	public_note?: string | null;
 	auth_login_attempts?: number | null;
-	auth_password_policy?:
-		| null
-		| `/^.{8,}$/`
-		| `/(?=^.{8,}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{';'?>.<,])(?!.*\\s).*$/`
-		| null;
+	auth_password_policy?: null | `/^.{8,}$/` | `/(?=^.{8,}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{';'?>.<,])(?!.*\\s).*$/` | null;
 	storage_asset_transform?: 'all' | 'none' | 'presets' | null;
-	storage_asset_presets?: Array<{
-		key: string;
-		fit: 'contain' | 'cover' | 'inside' | 'outside';
-		width: number;
-		height: number;
-		quality: number;
-		withoutEnlargement: boolean;
-		format: 'auto' | 'jpeg' | 'png' | 'webp' | 'tiff' | 'avif';
-		transforms: 'json';
-	}> | null;
+	storage_asset_presets?: Array<{ key: string; fit: 'contain' | 'cover' | 'inside' | 'outside'; width: number; height: number; quality: number; withoutEnlargement: boolean; format: 'auto' | 'jpeg' | 'png' | 'webp' | 'tiff' | 'avif'; transforms: 'json' }> | null;
 	custom_css?: string | null;
 	storage_default_folder?: DirectusFolder | string | null;
-	basemaps?: Array<{
-		name: string;
-		type: 'raster' | 'tile' | 'style';
-		url: string;
-		tileSize: number;
-		attribution: string;
-	}> | null;
+	basemaps?: Array<{ name: string; type: 'raster' | 'tile' | 'style'; url: string; tileSize: number; attribution: string }> | null;
 	mapbox_key?: string | null;
 	module_bar?: 'json' | null;
 	project_descriptor?: string | null;
@@ -724,9 +766,9 @@ export interface DirectusSettings {
 	public_registration_verify_email?: boolean;
 	public_registration_role?: DirectusRole | string | null;
 	public_registration_email_filter?: 'json' | null;
+	visual_editor_urls?: Array<{ url: string }> | null;
 	/** @description Settings for the Command Palette Module. */
 	command_palette_settings?: Record<string, any> | null;
-	visual_editor_urls?: Array<{ url: string }> | null;
 }
 
 export interface DirectusUser {
@@ -748,7 +790,7 @@ export interface DirectusUser {
 	token?: string | null;
 	last_access?: string | null;
 	last_page?: string | null;
-	provider?: string;
+	provider?: 'microsoft';
 	external_identifier?: string | null;
 	auth_data?: 'json' | null;
 	email_notifications?: boolean | null;
@@ -909,14 +951,19 @@ export interface Schema {
 	ai_prompts: AiPrompt[];
 	block_button: BlockButton[];
 	block_button_group: BlockButtonGroup[];
+	block_featured_carousel: BlockFeaturedCarousel[];
+	block_featured_carousel_items: BlockFeaturedCarouselItem[];
 	block_form: BlockForm[];
 	block_gallery: BlockGallery[];
 	block_gallery_items: BlockGalleryItem[];
 	block_hero: BlockHero[];
+	block_highlight_tiles: BlockHighlightTile[];
+	block_highlight_tiles_items: BlockHighlightTilesItem[];
 	block_posts: BlockPost[];
 	block_pricing: BlockPricing[];
 	block_pricing_cards: BlockPricingCard[];
 	block_richtext: BlockRichtext[];
+	block_upcoming_cards: BlockUpcomingCard[];
 	form_fields: FormField[];
 	forms: Form[];
 	form_submissions: FormSubmission[];
@@ -961,14 +1008,19 @@ export enum CollectionNames {
 	ai_prompts = 'ai_prompts',
 	block_button = 'block_button',
 	block_button_group = 'block_button_group',
+	block_featured_carousel = 'block_featured_carousel',
+	block_featured_carousel_items = 'block_featured_carousel_items',
 	block_form = 'block_form',
 	block_gallery = 'block_gallery',
 	block_gallery_items = 'block_gallery_items',
 	block_hero = 'block_hero',
+	block_highlight_tiles = 'block_highlight_tiles',
+	block_highlight_tiles_items = 'block_highlight_tiles_items',
 	block_posts = 'block_posts',
 	block_pricing = 'block_pricing',
 	block_pricing_cards = 'block_pricing_cards',
 	block_richtext = 'block_richtext',
+	block_upcoming_cards = 'block_upcoming_cards',
 	form_fields = 'form_fields',
 	forms = 'forms',
 	form_submissions = 'form_submissions',
@@ -1006,5 +1058,5 @@ export enum CollectionNames {
 	directus_operations = 'directus_operations',
 	directus_translations = 'directus_translations',
 	directus_versions = 'directus_versions',
-	directus_extensions = 'directus_extensions',
+	directus_extensions = 'directus_extensions'
 }

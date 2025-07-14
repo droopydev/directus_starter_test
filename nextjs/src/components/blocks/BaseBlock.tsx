@@ -7,6 +7,10 @@ import Pricing from '@/components/blocks/Pricing';
 import Posts from '@/components/blocks/Posts';
 import Form from '@/components/blocks/Form';
 
+import HighlightsTileServer from '@/components/blocks/HighlightsTile/HighlightsTile.server';
+import FeaturedCarouselServer from '@/components/blocks/FeaturedCarousel/FeaturedCarousel.server'
+import UpcomingCardsClient from './UpcomingCards/UpcomingCards.client';
+
 interface BaseBlockProps {
 	block: {
 		collection: string;
@@ -23,13 +27,17 @@ const BaseBlock = ({ block }: BaseBlockProps) => {
 		block_pricing: Pricing,
 		block_posts: Posts,
 		block_form: Form,
+		block_highlight_tiles: HighlightsTileServer,
+		block_featured_carousel: FeaturedCarouselServer,
+		block_upcoming_cards: UpcomingCardsClient
 	};
-
+	
 	const Component = components[block.collection];
 
 	if (!Component) {
 		return null;
 	}
+
 	const itemId = block.item?.id;
 
 	return <Component data={block.item} blockId={block.id} itemId={itemId} />;

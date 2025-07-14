@@ -1,0 +1,154 @@
+/*
+ * Featured Carousel Item
+ * ======================
+*/
+.fc_item {
+    --aspect-ratio: 4/3;
+    --card-bg-color: white;
+
+    display: flex;
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.fc_item > * {
+    flex: 50%;
+}
+
+.fc_item:global(.img-reverse) {
+   flex-direction: row-reverse;
+}
+
+.fc_item_img_container {
+    aspect-ratio: var(--aspect-ratio);
+}
+
+.fc_item_img_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fc_item_desc_container {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+
+/*
+ * Featured Carousel Swiper
+ * ========================
+*/
+.fc_swiper_container {
+  position: relative;
+}
+
+.fc :global(.swiper) {
+    padding: 7px;
+    margin: -7px;
+}
+
+
+/*
+ * Custom Swiper Navigation
+ * ========================
+*/
+.fc :global(.fc-navigation) {
+  --icon-active-color: var(--scb-color-orange);
+  --bg-active-color: white;
+
+  --icon-hover-color: white;
+  --bg-hover-color: var(--scb-color-orange);
+
+  --icon-disabled-color: var(--scb-color-orange);
+  --bg-disabled-color: white;
+
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .fc_nav_hide {
+    opacity: 0;
+  }
+  
+  .fc :global(.swiper-button-lock) {
+    display: none !important;
+  }
+  
+  .fc :global(.button-prev),
+  .fc :global(.button-next) {
+    --swiper-navigation-size: 1rem;
+    background-color: var(--bg-active-color);
+    color: var(--icon-active-color);
+    padding: 0.5em;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-weight: bold;
+    transition: 150ms ease;
+    transition-property: color background-color;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .fc :global(.button-prev):hover,
+  .fc :global(.button-next):hover {
+    background-color: var(--bg-hover-color);
+    color: var(--icon-hover-color);
+  }
+  
+  .fc :global(.button-disabled) {
+    opacity: 0.5;
+    cursor: auto;
+    box-shadow:
+      rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px !important;
+  }
+  
+  .fc :global(.button-disabled):hover {
+    background-color: var(--bg-disabled-color)!important;
+    color: var(--icon-disabled-color) !important;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .fc :global(.button-prev),
+    .fc :global(.button-next) {
+      display: block;
+      position: absolute;
+    }
+  
+    .fc :global(.button-prev) {
+      left: 2%;
+    }
+  
+    .fc :global(.button-next) {
+      right: 2%;
+    }
+  }
+  
+  @media screen and (min-width: 1280px) {
+    .fc :global(.button-prev) {
+      left: -6%;
+    }
+  
+    .fc :global(.button-next) {
+      right: -6%;
+    }
+  }
+  
+
+/*
+ * Custom Swiper Pagination
+ * ========================
+*/
+.fc :global(.fc-pagination) {
+  --swiper-pagination-color: var(--scb-color-orange);
+
+  text-align: center;
+  margin-block: 1.25rem
+}

@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 :root {
+	--scb-color-orange: #F15A24;
+	--scb-color-orange-80: #b34118;
+	--scb-color-orange-100: #C75846;
+	--scb-color-white: white;
+	--scb-fw-semibold: 700;
 	--background-color: #ffffff; /* Light background */
 	--foreground-color: #42566e; /* Light text */
 	--background-color-muted: color-mix(in srgb, var(--background-color), var(--foreground-color) 10%);
@@ -54,3 +59,57 @@
 		@apply hover:text-accent transition-colors no-underline;
 	}
 }
+
+
+.scb-bg-color-orange-80 {
+	background-color: var(--scb-color-orange-80) !important;
+}
+
+
+.scb-content h2, 
+.scb-content h3 {
+	font-weight: var(--scb-fw-semibold);
+	line-height: 1.2;
+	margin-bottom: 1rem;
+	color: var(--scb-color-orange);
+}
+
+.scb-content h2 {
+	font-size: 2rem;
+}
+
+.scb-content h3 {
+	font-size: 1.75rem
+}
+
+.scb-btn-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-block: 1rem;
+}
+
+.scb-btn-primary, .scb-btn-outline {
+	padding: 0.8em 1.25em;
+	border-radius: 5px;
+	display: inline-block;
+	text-align: center;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.scb-btn-primary {
+	background-color: var(--scb-color-orange);
+	color: var(--scb-color-white);
+}
+
+.scb-btn-primary:hover, .scb-btn-primary:focus {
+	background-color: var(--scb-color-orange-80);
+	color: var(--scb-color-white)
+}
+
+.scb-btn-outline {
+	border: 1px solid var(--scb-color-orange);
+	color: var(--scb-color-orange)
+}
+

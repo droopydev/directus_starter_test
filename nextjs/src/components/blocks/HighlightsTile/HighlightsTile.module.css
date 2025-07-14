@@ -1,0 +1,121 @@
+.card {
+    --title-font-size: 1.5rem;
+    --title-font-weight: 600;
+    --font-color: white;
+    --card-aspect-ratio: 16/9;
+
+    display: flex;
+    align-items: end;
+    aspect-ratio: var(--card-aspect-ratio);
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    box-shadow:
+        rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+
+/*
+ * Image Container
+ * ===============
+*/
+.card_img_container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.card img {
+    transform: scale(100%);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover img {
+    transform: scale(105%);
+}
+
+/*
+ * Overlay Container
+ * =================
+*/
+.card_overlay {
+    --gradient-start: rgb(14, 3, 37); 
+    --gradient-end: rgba(0, 63, 145, 0);
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+        0deg,
+        var(--gradient-start) -20%,
+        var(--gradient-end) 75%
+    );
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.card_overlay::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+        0deg,
+        var(--gradient-start) 0,
+        var(--gradient-end) 100%
+    );
+    z-index: 1;
+    transition: opacity 150ms ease-in;
+    opacity: 0;
+}
+
+
+.card:hover .card_overlay::before,
+.card:focus-visible .card_overlay::before {
+    opacity: 1;
+}
+
+/*
+ * Text Container
+ * ==============
+*/
+.card_text_container {
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    z-index: 3;
+   color: var(--font-color); 
+}
+
+.card_text_title {
+    font-weight: var(--title-font-weight);
+    font-size: var(--title-font-size);
+}
+
+.card_text_title + .card_text_description {
+    margin-top: 0.5rem;
+}
+
+.card .icon {
+    display: inline-block;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.card:hover .icon,
+.card:focus-visible .icon {
+    opacity: 1;
+}

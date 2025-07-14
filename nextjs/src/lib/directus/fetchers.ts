@@ -112,16 +112,44 @@ export const fetchPageData = async (permalink: string, postPage = 1) => {
 											],
 										},
 									],
+									block_highlight_tiles: [
+										'id',
+										'title',
+										{
+											items: [
+												'item_title',
+												'item_description',
+												'item_image.id',
+												'item_image.description'
+											]
+										}
+									],
+									block_featured_carousel: [
+										'id',
+										'block_title',
+										'image_alignment',
+										{
+											items: [
+												'item_title',
+												'item_description',
+												'item_image.id',
+												'item_image.description'
+											]
+										}
+									],
+									block_upcoming_cards: [
+										'title',
+									]
 								},
 							},
 						],
 					},
-				],
+				] as any,
 				deep: {
 					blocks: { _sort: ['sort'], _filter: { hide_block: { _neq: true } } },
-				},
+				} 
 			}),
-		);
+		) 
 
 		if (!pageData.length) {
 			throw new Error('Page not found');
