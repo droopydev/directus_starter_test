@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // import Local: Types and Styles
-import { HighlightsItemProps } from './HighlightsTile.types';
+import { HighlightsItemProps, HighlightsTileProps } from './HighlightsTile.types';
 import styles from './HighlightsTile.module.css';
 
 // import External: Icon Library
@@ -52,22 +52,26 @@ const HighlightsItem = ({ imgUrl, imgAlt, title, description, href }: Highlights
 	}
 };
 
-const HighlightsTile = ({ items }: { items: HighlightsItemProps[] }) => {
+const HighlightsTile = ({ items }: HighlightsTileProps) => {
 	return (
-		<ul className="list-none grid grid-cols sm:grid-cols-2 gap-5">
-			{items.map((item, key) => {
-				return (
-					<li key={key}>
-						<HighlightsItem
-							title={item.title}
-							imgUrl={item.imgUrl}
-							description={item.description}
-							imgAlt={item.imgAlt}
-						/>
-					</li>
-				);
-			})}
-		</ul>
+		<div className={styles.highlightsTile}>
+			{items && (
+				<ul className={styles.highlightsTile_grid}>
+					{items.map((item, key) => {
+						return (
+							<li key={key}>
+								<HighlightsItem
+									title={item.title}
+									imgUrl={item.imgUrl}
+									description={item.description}
+									imgAlt={item.imgAlt}
+								/>
+							</li>
+						);
+					})}
+				</ul>
+			)}
+		</div>
 	);
 };
 

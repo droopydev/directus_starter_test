@@ -114,7 +114,8 @@ export const fetchPageData = async (permalink: string, postPage = 1) => {
 									],
 									block_highlight_tiles: [
 										'id',
-										'title',
+										'display_title',
+										'display_description',
 										{
 											items: [
 												'item_title',
@@ -126,7 +127,8 @@ export const fetchPageData = async (permalink: string, postPage = 1) => {
 									],
 									block_featured_carousel: [
 										'id',
-										'block_title',
+										'display_title',
+										'display_description',
 										'image_alignment',
 										{
 											items: [
@@ -139,6 +141,14 @@ export const fetchPageData = async (permalink: string, postPage = 1) => {
 									],
 									block_upcoming_cards: [
 										'title',
+									],
+									block_footer_banner: [
+										'title',
+										'content',
+									],
+									block_gradient_hero: [
+										'title',
+										'description',
 									]
 								},
 							},

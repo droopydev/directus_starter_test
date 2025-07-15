@@ -1,0 +1,29 @@
+.footerbanner {
+    background-color: #F89A5F;
+    padding-block: 4rem;
+    color: var(--scb-color-white);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5;
+    min-height: 300px;
+}
+
+.footerbanner_content h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--scb-color-white);
+    margin-bottom: 1rem;
+}
+
+.footerbanner_content :global(.scb-btn-primary) {
+    background-color: var(--scb-color-white);
+    color: #F89A5F;
+}
+
+.footerbanner_content :global(.scb-btn-group) {
+    justify-content: center;
+    margin-bottom: 0;;
+}
+

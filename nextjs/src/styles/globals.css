@@ -8,6 +8,18 @@
 	--scb-color-orange-100: #C75846;
 	--scb-color-white: white;
 	--scb-fw-semibold: 700;
+
+	--scb-fs-base: 1rem;
+	--scb-fs-md: 1.2rem;
+	--scb-fs-lg: 1.44rem;
+	--scb-fs-xl: 1.728rem;
+	--scb-fs-2xl: 2.074rem;
+	--scb-fs-3xl: 2.488rem;
+	--scb-fs-4xl: 2.986rem;
+
+	--scb-breakpoint-sm: 640px;
+
+
 	--background-color: #ffffff; /* Light background */
 	--foreground-color: #42566e; /* Light text */
 	--background-color-muted: color-mix(in srgb, var(--background-color), var(--foreground-color) 10%);
@@ -46,7 +58,6 @@
 		@apply bg-gray dark:bg-[var(--background-variant-color)];
 	}
 
-
 	:root:not(.dark) [data-background='dark'] {
 		.inline-flex[class*='bg-gray'] {
 			@apply bg-[#172940] text-white hover:bg-accent;
@@ -61,8 +72,33 @@
 }
 
 
+[data-background='scb-orange'] {
+	background-color: #fcead7;
+}
+
 .scb-bg-color-orange-80 {
 	background-color: var(--scb-color-orange-80) !important;
+}
+
+.scb-site-container {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem
+}
+
+@media screen and (min-width: 640px) {
+	.scb-site-container {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.scb-site-container {
+		padding-left: 4rem;
+		padding-right: 4rem;
+	}
 }
 
 

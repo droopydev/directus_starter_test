@@ -5,3 +5,7 @@ export interface HighlightsItemProps {
 	description?: string | null;
 	href?: string | null;
 }
+
+export interface HighlightsTileProps {
+	items: HighlightsItemProps[];
+}

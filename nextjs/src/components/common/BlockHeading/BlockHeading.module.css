@@ -1,0 +1,15 @@
+.block_header {
+	color: var(--scb-color-orange);
+	font-weight: var(--scb-fw-semibold);
+	font-size: var(--scb-fs-2xl);
+	text-align: center;
+}
+
+.block_desc {
+	text-align: center;
+}
+
+.block_header ~ *:not(.block_desc),
+.block_desc ~ * {
+	margin-top: 2rem;
+}

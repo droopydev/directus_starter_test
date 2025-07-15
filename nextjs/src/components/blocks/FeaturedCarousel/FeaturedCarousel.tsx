@@ -92,9 +92,7 @@ const FeaturedCarouselSlider = ({ items }: { items: FeaturedCarouselItemProps[] 
 	);
 };
 
-const FeaturedCarousel = (props: FeaturedCarouselProps) => {
-	const { items } = props;
-
+const FeaturedCarousel = ({ items }: FeaturedCarouselProps) => {
 	const content =
 		items.length > 1 ? <FeaturedCarouselSlider items={items} /> : <FeaturedCarouselItem item={items[0]} />;
 

@@ -7,9 +7,11 @@ import Pricing from '@/components/blocks/Pricing';
 import Posts from '@/components/blocks/Posts';
 import Form from '@/components/blocks/Form';
 
+import FeaturedCarouselServer from '@/components/blocks/FeaturedCarousel/FeaturedCarousel.server';
+import FooterBannerServer from '@/components/blocks/FooterBanner/FooterBanner.server';
+import GradientHeroServer from '@/components/blocks/GradientHero/GradientHero.server';
 import HighlightsTileServer from '@/components/blocks/HighlightsTile/HighlightsTile.server';
-import FeaturedCarouselServer from '@/components/blocks/FeaturedCarousel/FeaturedCarousel.server'
-import UpcomingCardsClient from './UpcomingCards/UpcomingCards.client';
+import UpcomingCardsClient from '@/components/blocks/UpcomingCards/UpcomingCards.client';
 
 interface BaseBlockProps {
 	block: {
@@ -27,11 +29,13 @@ const BaseBlock = ({ block }: BaseBlockProps) => {
 		block_pricing: Pricing,
 		block_posts: Posts,
 		block_form: Form,
-		block_highlight_tiles: HighlightsTileServer,
 		block_featured_carousel: FeaturedCarouselServer,
-		block_upcoming_cards: UpcomingCardsClient
+		block_footer_banner: FooterBannerServer,
+		block_gradient_hero: GradientHeroServer,
+		block_highlight_tiles: HighlightsTileServer,
+		block_upcoming_cards: UpcomingCardsClient,
 	};
-	
+
 	const Component = components[block.collection];
 
 	if (!Component) {

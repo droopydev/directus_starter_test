@@ -75,9 +75,14 @@ export interface BlockFeaturedCarousel {
 	date_created?: string | null;
 	user_updated?: DirectusUser | string | null;
 	date_updated?: string | null;
-	block_title?: string | null;
 	/** @description  This field controls the alignment of the image. @required */
 	image_alignment: 'left' | 'right';
+	/** @required */
+	title: string;
+	/** @description Optional heading text shown above the block content. Keep it concise and meaningful. */
+	display_title?: string | null;
+	/** @description Optional supporting text that appears below the heading. Use it to briefly introduce or describe this block’s content. */
+	display_description?: string | null;
 	items?: BlockFeaturedCarouselItem[] | string[];
 }
 
@@ -93,6 +98,18 @@ export interface BlockFeaturedCarouselItem {
 	order?: number | null;
 	foreign_block_featured_carousel_id?: BlockFeaturedCarousel | string | null;
 	item_image?: DirectusFile | string | null;
+}
+
+export interface BlockFooterBanner {
+	/** @primaryKey */
+	id: string;
+	user_created?: DirectusUser | string | null;
+	date_created?: string | null;
+	user_updated?: DirectusUser | string | null;
+	date_updated?: string | null;
+	title?: string | null;
+	/** @required */
+	content: string;
 }
 
 export interface BlockForm {
@@ -139,6 +156,18 @@ export interface BlockGalleryItem {
 	user_updated?: DirectusUser | string | null;
 }
 
+export interface BlockGradientHero {
+	/** @primaryKey */
+	id: string;
+	user_created?: DirectusUser | string | null;
+	date_created?: string | null;
+	user_updated?: DirectusUser | string | null;
+	date_updated?: string | null;
+	/** @required */
+	title: string;
+	description?: string | null;
+}
+
 export interface BlockHero {
 	/** @description Larger main headline for this page section. */
 	headline?: string | null;
@@ -168,6 +197,10 @@ export interface BlockHighlightTile {
 	user_updated?: DirectusUser | string | null;
 	date_updated?: string | null;
 	title?: string | null;
+	/** @description Optional heading text shown above the block content. Keep it concise and meaningful. */
+	display_title?: string | null;
+	/** @description Optional supporting text that appears below the heading. Use it to briefly introduce or describe this block’s content. */
+	display_description?: string | null;
 	items?: BlockHighlightTilesItem[] | string[];
 }
 
@@ -431,13 +464,13 @@ export interface PageBlock {
 	/** @description The id of the page that this block belongs to. */
 	page?: Page | string | null;
 	/** @description The data for the block. */
-	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockHighlightTile | BlockFeaturedCarousel | BlockUpcomingCard | string | null;
+	item?: BlockHero | BlockRichtext | BlockForm | BlockPost | BlockGallery | BlockPricing | BlockHighlightTile | BlockFeaturedCarousel | BlockUpcomingCard | BlockFooterBanner | BlockGradientHero | string | null;
 	/** @description The collection (type of block). */
 	collection?: string | null;
 	/** @description Temporarily hide this block on the website without having to remove it from your page. */
 	hide_block?: boolean | null;
 	/** @description Background color for the block to create contrast. Does not control dark or light mode for the entire site. */
-	background?: 'light' | 'dark' | null;
+	background?: 'light' | 'dark' | `scb-orange` | null;
 	date_created?: string | null;
 	user_created?: DirectusUser | string | null;
 	date_updated?: string | null;
@@ -953,9 +986,11 @@ export interface Schema {
 	block_button_group: BlockButtonGroup[];
 	block_featured_carousel: BlockFeaturedCarousel[];
 	block_featured_carousel_items: BlockFeaturedCarouselItem[];
+	block_footer_banner: BlockFooterBanner[];
 	block_form: BlockForm[];
 	block_gallery: BlockGallery[];
 	block_gallery_items: BlockGalleryItem[];
+	block_gradient_hero: BlockGradientHero[];
 	block_hero: BlockHero[];
 	block_highlight_tiles: BlockHighlightTile[];
 	block_highlight_tiles_items: BlockHighlightTilesItem[];
@@ -1010,9 +1045,11 @@ export enum CollectionNames {
 	block_button_group = 'block_button_group',
 	block_featured_carousel = 'block_featured_carousel',
 	block_featured_carousel_items = 'block_featured_carousel_items',
+	block_footer_banner = 'block_footer_banner',
 	block_form = 'block_form',
 	block_gallery = 'block_gallery',
 	block_gallery_items = 'block_gallery_items',
+	block_gradient_hero = 'block_gradient_hero',
 	block_hero = 'block_hero',
 	block_highlight_tiles = 'block_highlight_tiles',
 	block_highlight_tiles_items = 'block_highlight_tiles_items',
